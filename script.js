@@ -45,12 +45,12 @@ let calcDiff = async () => {
     let staticOffset = 0;
     let getTime = (current, previous, type) => {
         let result
-        if (previous - current < 0) {
-            result = (type - Math.abs(previous - current - staticOffset));
+        if (previous - (current + staticOffset) < 0) {         
+            result = (type - Math.abs(previous - (current + staticOffset)));
             staticOffset = 1;
             return result;
         }
-        result = Math.abs(previous - current - staticOffset)
+        result = Math.abs(previous - (current + staticOffset))
         staticOffset = 0;
         return result;
     }
